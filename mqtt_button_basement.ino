@@ -16,6 +16,10 @@ const char* short_topic = "TOPIC_1";
 const char* long_topic = "TOPIC_2";
 const char* payload = "toggle";
 
+// If your MQTT Broker requires a username and password, uncomment and fill in the section below
+// const char* mqttUser = "MqttUser";
+// const char* mqttPassword = "MqttPassword";
+
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
@@ -52,7 +56,7 @@ void reconnect() {
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
     //if you MQTT broker has clientID,username and password
-    //please change following line to    if (client.connect(clientId,userName,passWord))
+    //please change following line to    if (client.connect(clientId.c_str,MqttUser,MqttPassword))
     if (client.connect(clientId.c_str()))
     {
       Serial.println("connected");
